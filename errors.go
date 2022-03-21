@@ -1,4 +1,4 @@
-package cognito_token_verifier
+package cognitotokenverifier
 
 // Error defines string error
 type Error string

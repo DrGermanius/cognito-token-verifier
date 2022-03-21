@@ -1,4 +1,4 @@
-package cognito_token_verifier
+package cognitotokenverifier
 
 import (
 	"context"
