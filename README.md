@@ -7,7 +7,7 @@ Library for verifying ID tokens and get user data from AWS Cognito User Pool.
 1. Import library:
 
  ``````
-import (ctv "github.com/DrGermanius/cognitotokenverifier")  
+import ctv "github.com/DrGermanius/cognitotokenverifier"
  ``````
 
 2. Initialize verifier:
