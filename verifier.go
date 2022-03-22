@@ -17,8 +17,8 @@ const (
 )
 
 type Config struct {
-	Region     string
-	UserPoolID string
+	Region string
+	PoolID string
 }
 
 type verifier struct {
@@ -28,7 +28,7 @@ type verifier struct {
 }
 
 func InitVerifier(cfg *Config) (*verifier, error) {
-	keysURL := fmt.Sprintf(keysURLTemplate, cfg.Region, cfg.UserPoolID)
+	keysURL := fmt.Sprintf(keysURLTemplate, cfg.Region, cfg.PoolID)
 	c := &aws.Config{Region: aws.String(cfg.Region)}
 	sess, err := session.NewSession(c)
 	if err != nil {
@@ -42,6 +42,9 @@ func InitVerifier(cfg *Config) (*verifier, error) {
 	}, nil
 }
 
+// Verify verifies the ID token from cognito
+// Read documentation below:
+// https://aws.amazon.com/premiumsupport/knowledge-center/decode-verify-cognito-json-token/
 func (v verifier) Verify(ctx context.Context, token string) error {
 	_, err := jwt.Parse(token, func(token *jwt.Token) (interface{}, error) {
 		return v.getMatchingPublicKey(ctx, token)
@@ -57,6 +60,8 @@ func (v verifier) Verify(ctx context.Context, token string) error {
 	return nil
 }
 
+// GetUserAttributesByToken returns user attributes
+// token must be verified before that
 func (v verifier) GetUserAttributesByToken(token string) (map[string]string, error) {
 	i := &cognito.GetUserInput{
 		AccessToken: aws.String(token),
