@@ -1,6 +1,6 @@
 # cognito-token-verifier
 
-Library for verifying ID tokens and get user data from AWS Cognito User Pool.
+Library for verifying ID tokens and getting user data from AWS Cognito User Pool.
 
 # Usage:
 
