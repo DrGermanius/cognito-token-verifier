@@ -1,4 +1,4 @@
-module github.com/DrGermanius/cognitotokenverifier
+module github.com/DrGermanius/cognito-token-verifier
 
 go 1.18
 
